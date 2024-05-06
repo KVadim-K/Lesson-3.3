@@ -32,14 +32,14 @@ reloading = False
 font = pygame.font.Font(None, 36)
 
 # Таймер обратного отсчета
-timer_duration = 30
+timer_duration = 20  # Секунды
 start_time = pygame.time.get_ticks()
 hits_since_last_reset = 0
 
 running = True
 while running:
     current_time = pygame.time.get_ticks()
-    elapsed_time = (current_time - start_time) / 1000
+    elapsed_time = (current_time - start_time) / 1000  # Преобразование миллисекунд в секунды
     remaining_time = timer_duration - elapsed_time
 
     screen.fill(color)
@@ -80,7 +80,7 @@ while running:
     screen.blit(target_img, (target_x - target_width // 2, target_y - target_height // 2))
 
     # Отображение текста
-    score_text = font.render(f'Счет: {score}', True, (255, 255, 255))
+    score_text = font.render(f'Попаданий: {score}', True, (255, 255, 255))
     screen.blit(score_text, (10, 10))
 
     shots_text = font.render(f'Выстрелы: {shots_fired}/{magazine_size}', True, (255, 255, 255))
@@ -100,7 +100,7 @@ while running:
         screen.fill((0, 0, 0))
         screen.blit(message_text, (SCREEN_WIDTH // 2 - message_text.get_width() // 2, SCREEN_HEIGHT // 2 - message_text.get_height() // 2))
         pygame.display.update()
-        pygame.time.wait(5000)
+        pygame.time.wait(5000)  # Ожидание 5 секунд
     if reloading:
         reload_text = font.render("Для перезарядки нажмите правую клавишу мыши", True, (255, 255, 255))
         screen.blit(reload_text, (100, 550))
