@@ -23,8 +23,13 @@ target_x = random.randint(target_width // 2, SCREEN_WIDTH - target_width // 2)
 target_y = random.randint(target_height // 2, SCREEN_HEIGHT - target_height // 2)
 color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-target_speed = 0.1
-target_direction = 1 # 1 означает движение вправо, -1 влево
+# target_speed = 0.1
+# target_direction = 1 # 1 означает движение вправо, -1 влево
+target_speed_x = 5
+target_speed_y = 5
+
+change_direction_time = 1000  # время в миллисекундах для смены направления
+last_change_time = pygame.time.get_ticks()
 
 score = 0
 shots_fired = 0
@@ -45,9 +50,18 @@ while running:
     elapsed_time = (current_time - start_time) / 1000  # Преобразование миллисекунд в секунды
     remaining_time = timer_duration - elapsed_time
 
-    target_x += target_speed * target_direction # Обновление позиции мишени
-    if target_x > SCREEN_WIDTH - target_width // 2 or target_x < target_width // 2:
-        target_direction *= -1  # Изменить направление движения
+    # target_x += target_speed * target_direction # Обновление позиции мишени
+    # if target_x > SCREEN_WIDTH - target_width // 2 or target_x < target_width // 2:
+    #     target_direction *= -1  # Изменить направление движения
+
+    # Решение о смене направления
+    if current_time - last_change_time > change_direction_time:
+        target_speed_x = random.choice([-100, 100])
+        target_speed_y = random.choice([-100, 100])
+        last_change_time = current_time
+    # Обновление позиции мишени
+        target_x += target_speed_x
+        target_y += target_speed_y
 
     screen.fill(color)
     for event in pygame.event.get():
