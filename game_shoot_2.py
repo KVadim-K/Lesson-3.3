@@ -40,7 +40,7 @@ reloading = False
 font = pygame.font.Font(None, 36)
 
 # Таймер обратного отсчета
-timer_duration = 20  # Секунды
+timer_duration = 30  # Секунды
 start_time = pygame.time.get_ticks()
 hits_since_last_reset = 0
 
@@ -85,9 +85,6 @@ while running:
                         target_y = random.randint(target_height // 2, SCREEN_HEIGHT - target_height // 2)
                         score += 1
                         hits_since_last_reset += 1
-                        # # Переместить мишень в случайное место после попадания
-                        # target_x = random.randint(target_width // 2, SCREEN_WIDTH - target_width // 2)
-                        # target_y = random.randint(target_height // 2, SCREEN_HEIGHT - target_height // 2)
 
                         if hits_since_last_reset >= 10:
                             hits_since_last_reset = 0
