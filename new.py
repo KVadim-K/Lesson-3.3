@@ -1,6 +1,8 @@
-a = 5 # создание переменной
-b = 10
+for i in range(10):
+    print(слово)
 
+a,b = 9, 8
+b = 5
 if a > b:
     print("a больше b")
 elif a < b:
